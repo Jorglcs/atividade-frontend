@@ -1,6 +1,6 @@
 # Tasks
 
-Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; demais blocos não iniciados. Marcar conclusão somente com evidência real.
+Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; bloco 2 concluído por Davi em 20/11/2026; demais blocos não iniciados. Marcar conclusão somente com evidência real.
 
 Integrantes: Jorge, Davi, Nicolas, Vitor, Gabriel Fontes e Gustavo Alves. A ordem dos nomes não atribui tarefas.
 
@@ -9,7 +9,7 @@ Antes de iniciar, cada pessoa informa seu nome e os números das tarefas que vai
 | Integrante | Tarefas assumidas |
 | --- | --- |
 | Jorge | 1.1, 1.2, 1.3 e 1.4 |
-| Davi | A definir |
+| Davi | 2.1, 2.2, 2.3 e 2.4 |
 | Nicolas | A definir |
 | Vitor | A definir |
 | Gabriel Fontes | A definir |
@@ -30,10 +30,10 @@ Dependências: revisão coletiva da spec e deste planejamento antes da implement
 
 Dependências: interfaces de 1.2; usar dados de exemplo durante o desenvolvimento sem alterar o contrato. Arquivos principais: `src/api/livros.js`, testes do cliente e documentação da API.
 
-- [ ] 2.1 Conferir o JSON Server com o `db.json` existente, preservando uma cópia antes de inserir dados; verificar GET 200, POST 201, id string e persistência após reiniciar a API, restaurando a base de teste ao final e registrando resultados em `docs/validacao.md`.
-- [ ] 2.2 Implementar `listarLivros({ signal } = {})` e `cadastrarLivro(dados)` com fetch, base configurável e validação compartilhada; verificar os formatos de retorno, a propagação do cancelamento e a rejeição de status ou dados incompatíveis com o contrato.
-- [ ] 2.3 Criar `src/api/livros.test.js` com `node:test` e fetch simulado; verificar sucesso GET/POST, envio de JSON sem id e sem ano vazio, inclusão de ano numérico, rejeição de HTTP inesperado, JSON inválido, falha de rede e array parcialmente inválido, executando `node --test src/api/livros.test.js`.
-- [ ] 2.4 Documentar em `docs/api.md` endereço, configuração, payloads, retornos e limitações do mock; verificar os exemplos contra a API local e registrar que a validação de domínio do front não protege chamadas externas.
+- [x] 2.1 Conferir o JSON Server com o `db.json` existente, preservando uma cópia antes de inserir dados; verificar GET 200, POST 201, id string e persistência após reiniciar a API, restaurando a base de teste ao final e registrando resultados em `docs/validacao.md`.
+- [x] 2.2 Implementar `listarLivros({ signal } = {})` e `cadastrarLivro(dados)` com fetch, base configurável e validação compartilhada; verificar os formatos de retorno, a propagação do cancelamento e a rejeição de status ou dados incompatíveis com o contrato.
+- [x] 2.3 Criar `src/api/livros.test.js` com `node:test` e fetch simulado; verificar sucesso GET/POST, envio de JSON sem id e sem ano vazio, inclusão de ano numérico, rejeição de HTTP inesperado, JSON inválido, falha de rede e array parcialmente inválido, executando `node --test src/api/livros.test.js`.
+- [x] 2.4 Documentar em `docs/api.md` endereço, configuração, payloads, retornos e limitações do mock; verificar os exemplos contra a API local e registrar que a validação de domínio do front não protege chamadas externas.
 
 ## 3. Listagem e estados de consulta
 

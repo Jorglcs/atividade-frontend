@@ -1,6 +1,6 @@
 # Proposal
 
-Status: aprovação coletiva informada por Jorge em 20/11/2026. Implementação parcial: somente bloco 1 autorizado nesta etapa.
+Status: aprovação coletiva informada por Jorge em 20/11/2026. Implementação parcial: blocos 1 e 2 concluídos; demais pendentes.
 
 ## Why
 
