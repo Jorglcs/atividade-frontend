@@ -1,0 +1,27 @@
+{
+  "name": "atividade-frontend",
+  "version": "1.0.0",
+  "description": "Proposta de catálogo compartilhado de livros, com listagem e cadastro por API HTTP. Resolve a necessidade de consultar os livros do grupo e incluir novos títulos em um acervo persistente.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "api": "json-server db.json --port 3001",
+    "openspec": "openspec"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@fission-ai/openspec": "^2.1.1",
+    "@vitejs/plugin-react": "^6.3.0",
+    "json-server": "^1.0.0-beta.15",
+    "vite": "^8.3.8"
+  },
+  "private": true
+}
