@@ -32,3 +32,21 @@ Ambiente: `npm ci` reinstalou 125 pacotes porque `node_modules` estava vazio; No
 | 2.4 | Exemplos contra a API local, com e sem ano, e POST fora do domínio; restauração de `db.json` | POST sem ano e POST com ano retornaram HTTP 201 com id string; GET retornou HTTP 200 com os dois registros na ordem de criação; POST com título só de espaços, categoria inexistente e ano futuro também retornou HTTP 201, comprovando que o mock não valida o domínio e que chamadas externas não são protegidas pelo front. `db.json` restaurado ao final |
 
 Limitações observadas: o cancelamento foi verificado com `fetch` simulado, não com rede real; a base configurável foi conferida no servidor de desenvolvimento, mas o build atual ainda não inclui o cliente porque a página do bloco 5 não o importa. A validação de domínio do front não protege chamadas diretas à API. O mock aceita duplicatas, não é idempotente e persiste em arquivo local. Detalhes em [api.md](api.md).
+
+## Bloco 3 — Nicholas Paiva — 21/11/2026
+
+Implementação com assistência do Codex. A montagem temporária no Vite usou dados de exemplo e um callback com Promise controlada. Os oito cenários passaram no Chrome em modo headless.
+
+| Tarefa | Verificação executada | Resultado |
+| --- | --- | --- |
+| 3.1 | Montar a lista com array vazio e depois com dois livros em ordem diferente da ordem alfabética dos ids | Array vazio exibiu “Nenhum livro cadastrado.” em uma região de status. Os dois registros apareceram em `ul > li` na ordem recebida, com título, autor e categoria, além do ano numérico ou “Ano não informado” |
+| 3.2 | Montar carregamento e erro, focar o botão e acionar a nova tentativa com a Promise pendente | Carregamento em região de status, falha em região de alerta e botão nativo focável. Um clique acionou o callback uma vez. Enquanto pendente, apareceu apenas o carregamento. Com a resolução, a mensagem de consulta saiu da tela |
+| 3.3 | Conferir contratos de props, estrutura e classes abaixo | Componentes disponíveis para composição da página e para o CSS. Montagem temporária removida após a verificação |
+| 3.1–3.3 | `node --test src/domain/livro.test.js src/api/livros.test.js` e `npm run build` | 20 testes passaram. Build da entrada existente concluído. A renderização dos componentes foi verificada separadamente na montagem temporária |
+
+Os componentes em `src/components` usam exports nomeados. As classes abaixo podem ser usadas no CSS.
+
+- `ListaLivros({ livros })` usa `ul.lista-livros`, `li.lista-livros__item`, `strong.lista-livros__titulo` e parágrafos para autor, categoria e ano. Com acervo vazio, usa `p.lista-livros-vazia[role="status"]`.
+- `EstadoListagem({ carregando, erro, onTentarNovamente })` usa `p.estado-listagem[role="status"]` no carregamento. Na falha, usa `div.estado-listagem.estado-listagem--erro` com um parágrafo de alerta e o botão de nova tentativa. Em sucesso, a página pode renderizar a lista.
+
+A verificação inspecionou o DOM, o foco e os papéis ARIA no navegador. A integração HTTP pela página, a responsividade e os anúncios em leitor de tela ficam para a validação dos blocos 5 e 6.

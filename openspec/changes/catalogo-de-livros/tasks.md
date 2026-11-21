@@ -1,8 +1,8 @@
 # Tasks
 
-Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; bloco 2 concluído por Davi em 20/11/2026; demais blocos não iniciados. Marcar conclusão somente com evidência real.
+Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; bloco 2 concluído por Davi em 20/11/2026; bloco 3 concluído por Nicholas Paiva em 21/11/2026; blocos 4–6 pendentes. Marcar conclusão somente com evidência real.
 
-Integrantes: Jorge, Davi, Nicolas, Vitor, Gabriel Fontes e Gustavo Alves. A ordem dos nomes não atribui tarefas.
+Integrantes: Jorge, Davi, Nicholas Paiva, Vitor, Gabriel Fontes e Gustavo Alves. A ordem dos nomes não atribui tarefas.
 
 Antes de iniciar, cada pessoa informa seu nome e os números das tarefas que vai assumir. O agente deve perguntar o nome se não tiver sido informado, conferir se as tarefas estão livres e registrar a atribuição na tabela abaixo antes de implementar. Não inferir responsável pelo número do bloco. Cada pessoa pode assumir tarefas de um ou mais blocos, respeitando as dependências.
 
@@ -10,7 +10,7 @@ Antes de iniciar, cada pessoa informa seu nome e os números das tarefas que vai
 | --- | --- |
 | Jorge | 1.1, 1.2, 1.3 e 1.4 |
 | Davi | 2.1, 2.2, 2.3 e 2.4 |
-| Nicolas | A definir |
+| Nicholas Paiva | 3.1, 3.2 e 3.3 |
 | Vitor | A definir |
 | Gabriel Fontes | A definir |
 | Gustavo Alves | A definir |
@@ -39,9 +39,9 @@ Dependências: interfaces de 1.2; usar dados de exemplo durante o desenvolviment
 
 Dependências: interfaces do design; pode começar em paralelo com 1 e 2 usando props e dados de exemplo. Não controlar fetch dentro destes componentes.
 
-- [ ] 3.1 Implementar `ListaLivros({ livros })` com lista semântica, id como chave, título, autor, categoria e ano ou “Ano não informado”; verificar em montagem de desenvolvimento com array vazio e dois livros, um com ano e outro sem, preservando a ordem recebida.
-- [ ] 3.2 Implementar `EstadoListagem({ carregando, erro, onTentarNovamente })` com textos da spec e mensagens anunciáveis; verificar carregamento, erro, acionamento da tentativa e indisponibilidade de nova tentativa enquanto pendente usando callbacks controlados em desenvolvimento.
-- [ ] 3.3 Registrar em `docs/validacao.md` as verificações isoladas de 3.1–3.2 e as classes/estrutura entregues ao responsável pelo CSS; verificar identificação dos cenários, resultado observado e evidências, sem declarar o fluxo HTTP integrado como aprovado nesta etapa.
+- [x] 3.1 Implementar `ListaLivros({ livros })` com lista semântica, id como chave, título, autor, categoria e ano ou “Ano não informado”; verificar em montagem de desenvolvimento com array vazio e dois livros, um com ano e outro sem, preservando a ordem recebida.
+- [x] 3.2 Implementar `EstadoListagem({ carregando, erro, onTentarNovamente })` com textos da spec e mensagens anunciáveis; verificar carregamento, erro, acionamento da tentativa e indisponibilidade de nova tentativa enquanto pendente usando callbacks controlados em desenvolvimento.
+- [x] 3.3 Registrar em `docs/validacao.md` as verificações isoladas de 3.1–3.2 e as classes/estrutura entregues ao responsável pelo CSS; verificar identificação dos cenários, resultado observado e evidências, sem declarar o fluxo HTTP integrado como aprovado nesta etapa.
 
 ## 4. Formulário e ciclo de envio
 
