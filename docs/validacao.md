@@ -50,3 +50,24 @@ Os componentes em `src/components` usam exports nomeados. As classes abaixo pode
 - `EstadoListagem({ carregando, erro, onTentarNovamente })` usa `p.estado-listagem[role="status"]` no carregamento. Na falha, usa `div.estado-listagem.estado-listagem--erro` com um parágrafo de alerta e o botão de nova tentativa. Em sucesso, a página pode renderizar a lista.
 
 A verificação inspecionou o DOM, o foco e os papéis ARIA no navegador. A integração HTTP pela página, a responsividade e os anúncios em leitor de tela ficam para a validação dos blocos 5 e 6.
+
+---
+
+## Bloco 4 — Vitor Lima — 21/11/2026
+
+Implementação do formulário de cadastro com campos controlados, validação de domínio, bloqueio contra envio duplo, e tratamento de sucesso/falha.
+
+| Tarefa | Verificação executada | Resultado |
+| --- | --- | --- |
+| 4.1 | Criar `src/components/FormularioLivro.jsx` com campos controlados de título, autor, categoria e ano opcional, labels, mensagens de erro e foco ao primeiro campo inválido | Componente criado com inputs text/número e select. Validação usando `validarCadastro` do domínio. Campos inválidos impedem o envio e recebem mensagem de erro. Dados válidos enviam payload normalizado via `normalizarCadastro`. |
+| 4.2 | Implementar bloqueio por `indisponivel`, estado pendente e guarda síncrona contra envio duplo | Campo `indisponivel` desabilita o formulário quando a consulta não está em sucesso. Estado `enviando` desabilita campos e botão, exibe "Cadastrando...". Guarda por referência (`guard.current`) impede chamadas repetidas antes da próxima renderização. |
+| 4.3 | Implementar sucesso e falha com mensagens da spec; sucesso limpa campos, falha preserva valores | Sucesso: campos limpos, formulário reabilitado, mensagem "Livro cadastrado com sucesso." Falha: campos preservados, formulário reabilitado, mensagem "Não foi possível cadastrar o livro. Tente novamente." Nenhuma repetição automática ocorre. |
+| 4.4 | Registrar em `docs/validacao.md` resultados isolados do formulário e seu contrato de props | Registro acima. Cobertura de campos obrigatórios, ano vazio/válido/inválido, envio pendente, sucesso e falha, incluindo as mensagens anunciáveis. |
+
+Componentes entregues em `src/components/FormularioLivro.jsx`:
+- `FormularioLivro({ onCadastrar, indisponivel })` usa exports nomeados `CATEGORIAS`, `validarCadastro`, `normalizarCadastro` de `src/domain/livro.js`
+- Campos: título (1-120 chars), autor (1-100 chars), categoria (Literatura/Tecnologia/Ciências/Outros), ano (opcional, inteiro 1-corrente)
+- Mensagens: erros por campo, "Cadastrando..." durante envio, sucesso e falha fixas da spec
+- Estado: `enviando` desabilita campos/botão, `indisponivel` bloqueia formulário antes da primeira consulta
+
+Integração com `src/pages/LivrosPage.jsx` e `src/api/livros.js`. Build e testes aprovados (20/20). Responsividade e acessibilidade ficam para blocos 5 e 6.
