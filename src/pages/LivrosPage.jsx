@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { listarLivros, cadastrarLivro } from '../api/livros.js'
 import { ListaLivros } from '../components/ListaLivros.jsx'
 import { EstadoListagem } from '../components/EstadoListagem.jsx'
@@ -6,62 +6,62 @@ import { FormularioLivro } from '../components/FormularioLivro.jsx'
 
 export function LivrosPage() {
   const [livros, setLivros] = useState([])
-  const [carregando, setCarregando] = useState(true)
-  const [erro, setErro] = useState(false)
-  const [indisponivel, setIndisponivel] = useState(true)
-  const [enviandoCadastro, setEnviandoCadastro] = useState(false)
+  const [estadoConsulta, setEstadoConsulta] = useState('carregando')
+  const consultaAtiva = useRef(null)
 
-  // Função para tentar carregar livros
-  const tentarCarregar = async () => {
-    setCarregando(true)
-    setIndisponivel(true)
-    setErro(false)
+  const consultarLivros = useCallback(async () => {
+    if (consultaAtiva.current) return
+
+    const controlador = new AbortController()
+    consultaAtiva.current = controlador
+    setEstadoConsulta('carregando')
+
     try {
-      const resultado = await listarLivros()
-      setLivros(resultado)
-      setCarregando(false)
-      setIndisponivel(false)
-    } catch (erro) {
-      setErro(true)
-      setCarregando(false)
-      setIndisponivel(true)
-    }
-  }
+      const resultado = await listarLivros({ signal: controlador.signal })
+      if (controlador.signal.aborted) return
 
-  // Efeito inicial: consultar ao montar
-  useEffect(() => {
-    tentarCarregar()
+      setLivros(resultado)
+      setEstadoConsulta('sucesso')
+    } catch {
+      if (!controlador.signal.aborted) setEstadoConsulta('erro')
+    } finally {
+      if (consultaAtiva.current === controlador) consultaAtiva.current = null
+    }
   }, [])
 
+  useEffect(() => {
+    consultarLivros()
+    return () => {
+      consultaAtiva.current?.abort()
+      consultaAtiva.current = null
+    }
+  }, [consultarLivros])
+
+  async function enviarCadastro(dados) {
+    const livro = await cadastrarLivro(dados)
+    setLivros((livrosAtuais) => [...livrosAtuais, livro])
+  }
+
+  const consultaConcluida = estadoConsulta === 'sucesso'
+
   return (
-    <section>
-      <h2>Acervo de Livros</h2>
+    <div className="livros-page">
+      <section aria-labelledby="acervo-titulo">
+        <h2 id="acervo-titulo">Acervo de livros</h2>
+        <EstadoListagem
+          carregando={estadoConsulta === 'carregando'}
+          erro={estadoConsulta === 'erro'}
+          onTentarNovamente={consultarLivros}
+        />
+        <div aria-live="polite">
+          {consultaConcluida && <ListaLivros livros={livros} />}
+        </div>
+      </section>
 
-      {/* Estado de consulta */}
-      <EstadoListagem
-        carregando={carregando}
-        erro={erro}
-        onTentarNovamente={tentarCarregar}
-      />
-
-      {/* Lista de livros */}
-      <ListaLivros livros={livros} />
-
-      {/* Formulário de cadastro */}
-      <FormularioLivro
-        onCadastrar={async (dados) => {
-          setEnviandoCadastro(true)
-          try {
-            const livro = await cadastrarLivro(dados)
-            setLivros((antigos) => [...antigos, livro])
-          } catch (erro) {
-            // Falha: campos preservados no formulário
-          } finally {
-            setEnviandoCadastro(false)
-          }
-        }}
-        indisponivel={indisponivel || carregando || erro}
-      />
-    </section>
+      <section aria-labelledby="cadastro-titulo">
+        <h2 id="cadastro-titulo">Cadastro de livros</h2>
+        <FormularioLivro onCadastrar={enviarCadastro} indisponivel={!consultaConcluida} />
+      </section>
+    </div>
   )
 }

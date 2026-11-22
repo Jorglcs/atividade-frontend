@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
+import { useRef, useState } from 'react'
 import { CATEGORIAS, validarCadastro, normalizarCadastro } from '../domain/livro.js'
 
+const CAMPOS_INICIAIS = { titulo: '', autor: '', categoria: '', ano: '' }
 const MSG_TITULO_INVALIDO = 'Informe um título entre 1 e 120 caracteres.'
 const MSG_AUTOR_INVALIDO = 'Informe um autor entre 1 e 100 caracteres.'
 const MSG_CATEGORIA_INVALIDA = 'Selecione uma categoria válida.'
 const MSG_ANO_INVALIDO = 'Informe um ano inteiro entre 1 e o ano atual.'
-const MSG_CADASTRO_SUCCESS = 'Livro cadastrado com sucesso.'
+const MSG_CADASTRO_SUCESSO = 'Livro cadastrado com sucesso.'
 const MSG_CADASTRO_ERRO = 'Não foi possível cadastrar o livro. Tente novamente.'
 
 export function FormularioLivro({ onCadastrar, indisponivel }) {
-  const [campos, setCampos] = useState({ titulo: '', autor: '', categoria: '', ano: '' })
+  const [campos, setCampos] = useState(CAMPOS_INICIAIS)
   const [erros, setErros] = useState({})
   const [enviando, setEnviando] = useState(false)
-  const [tentativaAtiva, setTentativaAtiva] = useState(false)
-  const guard = useRef(false)
+  const [resultado, setResultado] = useState(null)
+  const envioEmAndamento = useRef(false)
+  const bloqueado = indisponivel || enviando
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -28,39 +30,25 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (bloqueado || envioEmAndamento.current) return
 
-    // Guarda síncrona contra envio duplo
-    if (guard.current || enviando) return
-    guard.current = true
-
-    // Validar campos
     const errosValidacao = validarCadastro(campos)
     setErros(errosValidacao)
+    setResultado(null)
+    if (Object.keys(errosValidacao).length) return
 
-    // Se houver erros, não envia e permite foco ao primeiro inválido
-    if (Object.keys(errosValidacao).length) {
-      setTentativaAtiva(false)
-      guard.current = false
-      return
-    }
-
-    // Normalizar e enviar
+    envioEmAndamento.current = true
     setEnviando(true)
-    const dadosNormalizados = normalizarCadastro(campos)
 
     try {
-      await onCadastrar(dadosNormalizados)
-      // Sucesso: limpar campos, reabilitar formulário
-      setCampos({ titulo: '', autor: '', categoria: '', ano: '' })
-      setErros({})
+      await onCadastrar(normalizarCadastro(campos))
+      setCampos(CAMPOS_INICIAIS)
+      setResultado('sucesso')
+    } catch {
+      setResultado('erro')
+    } finally {
+      envioEmAndamento.current = false
       setEnviando(false)
-      setTentativaAtiva(false)
-      guard.current = false
-    } catch (erro) {
-      // Falha: preservar campos, reabilitar formulário
-      setEnviando(false)
-      setTentativaAtiva(false)
-      guard.current = false
     }
   }
 
@@ -81,7 +69,7 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
           id="titulo"
           value={campos.titulo}
           onChange={handleChange}
-          disabled={enviando || tentativaAtiva}
+          disabled={bloqueado}
           className="formulario-livro__input"
           aria-invalid={!!erros.titulo}
           aria-describedby={erros.titulo ? 'titulo-erro' : undefined}
@@ -104,7 +92,7 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
           id="autor"
           value={campos.autor}
           onChange={handleChange}
-          disabled={enviando || tentativaAtiva}
+          disabled={bloqueado}
           className="formulario-livro__input"
           aria-invalid={!!erros.autor}
           aria-describedby={erros.autor ? 'autor-erro' : undefined}
@@ -125,7 +113,7 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
           id="categoria"
           value={campos.categoria}
           onChange={handleChange}
-          disabled={enviando || tentativaAtiva}
+          disabled={bloqueado}
           className="formulario-livro__select"
         >
           <option value="">{'Selecione'}</option>
@@ -152,7 +140,7 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
           id="ano"
           value={campos.ano}
           onChange={handleChange}
-          disabled={enviando || tentativaAtiva}
+          disabled={bloqueado}
           className="formulario-livro__input"
           placeholder="Opcional"
           aria-invalid={!!erros.ano}
@@ -168,11 +156,17 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
       <div className="formulario-livro__acao">
         <button
           type="submit"
-          disabled={enviando || tentativaAtiva || indisponivel}
+          disabled={bloqueado}
           className="formulario-livro__botao"
         >
           {enviando ? 'Cadastrando...' : 'Cadastrar livro'}
         </button>
+      </div>
+      <div role="status">
+        {resultado === 'sucesso' && <p>{MSG_CADASTRO_SUCESSO}</p>}
+      </div>
+      <div role="alert">
+        {resultado === 'erro' && <p>{MSG_CADASTRO_ERRO}</p>}
       </div>
     </form>
   )

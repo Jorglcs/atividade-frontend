@@ -1,6 +1,6 @@
 # Tasks
 
-Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; bloco 2 concluído por Davi em 20/11/2026; bloco 3 concluído por Nicholas Paiva em 21/11/2026; blocos 4–6 pendentes. Marcar conclusão somente com evidência real.
+Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; bloco 2 concluído por Davi em 20/11/2026; bloco 3 concluído por Nicholas Paiva em 21/11/2026. Gustavo Alves Mota concluiu o bloco 5 em 22/11/2026. Os blocos 4 e 6 têm tarefas abertas. Marcar conclusão somente com evidência real.
 
 Integrantes: Jorge, Davi, Nicholas Paiva, Vitor, Gabriel Fontes e Gustavo Alves. A ordem dos nomes não atribui tarefas.
 
@@ -13,7 +13,7 @@ Antes de iniciar, cada pessoa informa seu nome e os números das tarefas que vai
 | Nicholas Paiva | 3.1, 3.2 e 3.3 |
 | Vitor | A definir |
 | Gabriel Fontes | A definir |
-| Gustavo Alves | A definir |
+| Gustavo Alves Mota | 5.1, 5.2, 5.3 e 5.4 |
 
 Referências: [spec](specs/catalogo-livros/spec.md) e [design](design.md). Esta lista substitui a divisão preliminar para fins de execução da mudança, incluindo o ano opcional. Jorge autorizou commit e push após concluir o bloco 1 em 20/11/2026. Quando autorizados, usar a mesma branch `main`, conforme solicitado, coordenando alterações nos arquivos compartilhados.
 
@@ -56,10 +56,10 @@ Dependências: regras de 1.2; o componente pode usar `onCadastrar` simulado ante
 
 Dependências: cliente de 2, componentes de 3 e 4. Pode preparar a composição previamente conforme as interfaces, mas a conclusão depende das entregas reais.
 
-- [ ] 5.1 Criar `LivrosPage` e `App` e conectar o ponto de entrada existente, mantendo estado da lista e consulta na página; verificar consulta inicial, estados exclusivos, cadastro bloqueado durante carregamento/erro e liberado em sucesso, inclusive com array vazio.
-- [ ] 5.2 Integrar cancelamento do GET no desmontar e recuperação de consulta; verificar com rede lenta e API desligada/religada que não há atualização por resposta cancelada, consultas concorrentes pelo botão ou repetição de POST por efeito/StrictMode.
-- [ ] 5.3 Conectar `onCadastrar` à API e à atualização funcional da lista; verificar que sucesso acrescenta o livro retornado sem novo GET, remove o estado vazio e que falha preserva lista/formulário e é propagada ao componente de cadastro.
-- [ ] 5.4 Registrar em `docs/validacao.md` o fluxo HTTP real GET → POST → recarga, com e sem ano e com título repetido; verificar persistência, ordem da lista e uma única requisição POST por envio, incluindo resultados dos cenários de recuperação e falha das tarefas anteriores.
+- [x] 5.1 Criar `LivrosPage` e `App` e conectar o ponto de entrada existente, mantendo estado da lista e consulta na página; verificar consulta inicial, estados exclusivos, cadastro bloqueado durante carregamento/erro e liberado em sucesso, inclusive com array vazio.
+- [x] 5.2 Integrar cancelamento do GET no desmontar e recuperação de consulta; verificar com rede lenta e API desligada/religada que não há atualização por resposta cancelada, consultas concorrentes pelo botão ou repetição de POST por efeito/StrictMode.
+- [x] 5.3 Conectar `onCadastrar` à API e à atualização funcional da lista; verificar que sucesso acrescenta o livro retornado sem novo GET, remove o estado vazio e que falha preserva lista/formulário e é propagada ao componente de cadastro.
+- [x] 5.4 Registrar em `docs/validacao.md` o fluxo HTTP real GET → POST → recarga, com e sem ano e com título repetido; verificar persistência, ordem da lista e uma única requisição POST por envio, incluindo resultados dos cenários de recuperação e falha das tarefas anteriores.
 
 ## 6. Interface, documentação de uso e validação integrada
 

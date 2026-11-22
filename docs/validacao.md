@@ -71,3 +71,19 @@ Componentes entregues em `src/components/FormularioLivro.jsx`:
 - Estado: `enviando` desabilita campos/botão, `indisponivel` bloqueia formulário antes da primeira consulta
 
 Integração com `src/pages/LivrosPage.jsx` e `src/api/livros.js`. Build e testes aprovados (20/20). Responsividade e acessibilidade ficam para blocos 5 e 6.
+
+## Bloco 5 — Gustavo Alves Mota — 22/11/2026
+
+Verificação automatizada no Chrome 157.0.8103.79 em modo headless, com Vite em desenvolvimento (`StrictMode`) e JSON Server 1.0.0-beta.15. Um roteiro temporário do Playwright controlou a entrega de respostas lentas. O front usou `VITE_API_URL` para acessar a API com uma cópia de `db.json`. A conferência final confirmou que a base do repositório permaneceu intacta.
+
+| Tarefa | Verificação executada | Resultado |
+| --- | --- | --- |
+| 5.1 | Abrir a aplicação com GET inicial pendente e liberar a resposta HTTP 200 com `[]` | `App` exibiu as seções de acervo e cadastro. Durante o GET, apareceu apenas o carregamento e os cinco controles do formulário ficaram desabilitados. A resposta vazia exibiu “Nenhum livro cadastrado.” e liberou os controles. A recarga com registros exibiu a lista na ordem recebida |
+| 5.2 | Desmontar a página durante um GET pendente e simular uma resposta antiga chegando após o cancelamento no `StrictMode` | O navegador registrou `net::ERR_ABORTED` ao desmontar. Na simulação, só o resultado da consulta mais recente permaneceu na tela |
+| 5.2 | Desligar o JSON Server, recarregar a página, religar a API e clicar duas vezes seguidas em “Tentar novamente” | A falha de rede exibiu o alerta de consulta e manteve o formulário bloqueado. Os dois cliques produziram um GET; durante a nova tentativa, apenas o carregamento ficou visível. O HTTP 200 recuperou a tela e liberou o cadastro. Nenhum POST foi disparado nessa etapa |
+| 5.3 | Fazer dois envios imediatos com o primeiro POST pendente | Uma requisição foi observada. Os controles ficaram bloqueados com “Cadastrando...”. Após o HTTP 201, o livro apareceu na lista e a mensagem de acervo vazio saiu. O formulário limpou os campos, exibiu a mensagem de sucesso em uma região de status e voltou a aceitar edição. Nenhum GET adicional foi executado |
+| 5.3 | Desligar o JSON Server após os cadastros e enviar um terceiro livro | A única tentativa de POST falhou na rede. O formulário exibiu o alerta, preservou os quatro valores e voltou a aceitar edição. Os dois itens da lista permaneceram na mesma ordem. Religada a API, o navegador não repetiu o POST |
+| 5.4 | Executar GET → dois POST com o mesmo título → reiniciar o JSON Server → recarregar | Os dois POST retornaram HTTP 201 com ids string distintos gerados pela API. O primeiro payload omitiu o ano e a lista exibiu “Ano não informado”. O segundo enviou `2008` como número e a lista exibiu o ano. O GET da recarga retornou HTTP 200 com os mesmos dois registros na ordem de cadastro, conferidos também no arquivo temporário |
+| 5.1–5.4 | `node --test src/domain/livro.test.js src/api/livros.test.js`, `npm run build` e `npx --no-install openspec validate catalogo-de-livros --strict` | 20 testes passaram. O Vite 8.3.8 gerou o build com 21 módulos transformados. A mudança passou na validação estrutural do OpenSpec |
+
+Com autorização de Gustavo, o formulário recebeu a importação de `useRef`, o bloqueio efetivo dos controles e as mensagens de sucesso e falha necessárias à integração. O contêiner `.livros-page` reúne as duas seções para o CSS do bloco 6. A validação conferiu as regiões de status e alerta no DOM. A revisão de responsividade, foco e anúncios em leitor de tela segue nas tarefas do bloco 6.
