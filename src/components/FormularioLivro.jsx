@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { CATEGORIAS, validarCadastro, normalizarCadastro } from '../domain/livro.js'
 
 const CAMPOS_INICIAIS = { titulo: '', autor: '', categoria: '', ano: '' }
@@ -15,7 +15,15 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
   const [enviando, setEnviando] = useState(false)
   const [resultado, setResultado] = useState(null)
   const envioEmAndamento = useRef(false)
+  const formulario = useRef(null)
+  const primeiroErro = useRef(null)
   const bloqueado = indisponivel || enviando
+
+  useLayoutEffect(() => {
+    if (!primeiroErro.current) return
+    formulario.current?.elements.namedItem(primeiroErro.current)?.focus()
+    primeiroErro.current = null
+  }, [erros])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -33,6 +41,7 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
     if (bloqueado || envioEmAndamento.current) return
 
     const errosValidacao = validarCadastro(campos)
+    primeiroErro.current = Object.keys(errosValidacao)[0] ?? null
     setErros(errosValidacao)
     setResultado(null)
     if (Object.keys(errosValidacao).length) return
@@ -54,6 +63,7 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
 
   return (
     <form
+      ref={formulario}
       onSubmit={handleSubmit}
       className="formulario-livro"
       role="form"
@@ -115,6 +125,8 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
           onChange={handleChange}
           disabled={bloqueado}
           className="formulario-livro__select"
+          aria-invalid={!!erros.categoria}
+          aria-describedby={erros.categoria ? 'categoria-erro' : undefined}
         >
           <option value="">{'Selecione'}</option>
           {CATEGORIAS.map((cat) => (
@@ -124,7 +136,7 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
           ))}
         </select>
         {erros.categoria && (
-          <span className="formulario-livro__erro">
+          <span id="categoria-erro" className="formulario-livro__erro">
             {MSG_CATEGORIA_INVALIDA}
           </span>
         )}

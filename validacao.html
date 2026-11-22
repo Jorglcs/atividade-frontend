@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validação isolada — Estante do Grupo</title>
+  </head>
+  <body>
+    <script>
+      window.addEventListener('error', event => {
+        const aviso = document.createElement('pre')
+        aviso.textContent = `Falha no ambiente de validação: ${event.message}`
+        document.body.append(aviso)
+      })
+    </script>
+    <div id="root">Carregando módulo de validação...</div>
+    <script type="module" src="/src/validacao-browser.jsx"></script>
+  </body>
+</html>

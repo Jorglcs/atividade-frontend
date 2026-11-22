@@ -1,5 +1,7 @@
 node_modules/
 dist/
+dist-validacao/
+public/validacao-assets/
 .env
 .env.local
 *.log

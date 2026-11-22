@@ -45,6 +45,19 @@ Não preencher retroativamente com sugestões da IA como se fossem decisões já
 
 ## Resultado da validação e reflexão
 
+### Observações técnicas para o grupo revisar — 22/11/2026
+
+Registro factual da continuidade de Gabriel Fontes de Sousa com assistência do Codex; não constitui reflexão ou aprovação dos demais integrantes.
+
+- A inspeção de código e o teste de envio vazio encontraram duas divergências em relação ao design: foco permanecia no botão e categoria não associava seu erro por ARIA. O solicitante autorizou os ajustes limitados no formulário do bloco 4; o reteste confirmou foco em título, autor, categoria e ano conforme o primeiro erro.
+- Testes de domínio/HTTP e build haviam passado antes da descoberta desses defeitos. A verificação funcional foi necessária para conferir foco e navegação, conforme a separação por camadas prevista no design.
+- As classes entregues pelos componentes permitiram implementar CSS responsivo sem mudar a estrutura dos blocos 3–5. Em 360px e desktop, títulos sem espaços com 120 caracteres quebraram sem rolagem horizontal.
+- A tabela de tarefas distinguiu autoria, implementação e validação: as caixas do bloco 4 permaneceram intactas e a intervenção autorizada foi registrada nas evidências do bloco 6.
+
+Participação e aprovação desta etapa pelos seis: ainda não informadas. Usuários GitHub individuais: ainda não informados. Comentários de cada integrante sobre decisões, dificuldades de coordenação e o que faria diferente: pendentes. Não atribuir as observações acima ao grupo como se já tivessem sido discutidas coletivamente.
+
+O roteiro de conferência dos 19 cenários, evidências existentes e lacunas está em `docs/validacao.md`. Permanecem pendentes simulações integradas de resposta fora do contrato e resposta de POST perdida após persistência. A revisão 6.2 aguarda os responsáveis dos blocos 3–5; as tarefas 6.3, 6.4 e 6.6 aguardam os dados e a participação exigidos no planejamento.
+
 Preencher com evidências reais depois da implementação: critério executado, resultado esperado, resultado observado, inconsistência encontrada, correção e nova execução. Registrar também o resultado do comando de verificação do framework disponível na instalação.
 
 Não afirmar que a atividade está concluída antes de ter repositório GitHub, colaboradores, artefatos do framework, código e validação.

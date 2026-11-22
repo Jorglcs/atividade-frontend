@@ -6,6 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "validar:preparar": "node scripts/preparar-validacao.mjs",
+    "validar": "node scripts/preparar-validacao.mjs --servir",
     "api": "json-server db.json --port 3001",
     "openspec": "openspec"
   },

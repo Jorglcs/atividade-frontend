@@ -1,72 +1,69 @@
 # Estante do Grupo
 
-## Projeto e integrantes
+Catálogo acadêmico em React/Vite com listagem e cadastro persistidos pelo JSON Server. O planejamento e os critérios de aceitação usam OpenSpec.
 
-Proposta de catálogo compartilhado de livros, com listagem e cadastro por API HTTP. Resolve a necessidade de consultar os livros do grupo e incluir novos títulos em um acervo persistente.
+## Executar localmente
 
-Integrantes: Jorge, Davi, Nicolas, Vitor, Gabriel Fontes e Gustavo Alves. Usuários GitHub pendentes. Cada pessoa informa seu nome e as tarefas que vai assumir; a atribuição será registrada no [tasks.md](openspec/changes/catalogo-de-livros/tasks.md), sem associação pela ordem dos nomes.
-
-Estado atual: base React/Vite, OpenSpec e planejamento preparados; bloco 1 de Jorge concluído com regras de domínio e testes. Aprovação coletiva informada por Jorge em 20/11/2026. Os blocos 2–6 continuam disponíveis e a interface ainda é provisória. Evidências em [docs/validacao.md](docs/validacao.md).
-
-## Framework utilizado
-
-Proposta: **OpenSpec**, por permitir organizar uma funcionalidade pequena em proposta, especificação, design e tarefas. A escolha ainda deve ser confirmada pelo grupo.
-
-Documentação oficial: [OpenSpec](https://github.com/Fission-AI/OpenSpec). Consultar também o capítulo correspondente do book da disciplina; esse material não foi fornecido nesta preparação.
-
-Instalação indicada no enunciado, a executar dentro do projeto na etapa de preparação:
+Na raiz do projeto, instale as dependências do lockfile:
 
 ```powershell
-npm install -g @fission-ai/openspec@latest
-openspec init --tools opencode
+npm ci
 ```
 
-Conferir os requisitos de Node e a sintaxe na versão instalada. Usar no chat do opencode os comandos apresentados pela instalação, seguindo explorar/propor, revisar e aplicar. Os nomes podem variar entre versões. Esta preparação manual não substitui a geração dos artefatos pelo framework na sessão conjunta.
-
-## Como rodar
-
-Instale as dependências com `npm ci`. Execute em terminais separados:
+Em um terminal, inicie a API:
 
 ```powershell
 npm run api
 ```
 
+Em outro terminal, na mesma pasta, inicie o front:
+
 ```powershell
 npm run dev
 ```
 
-API em `http://localhost:3001/livros`. O Vite apresenta o endereço do front no terminal (porta padrão 5173). `.env.example` documenta `VITE_API_URL`, a ser usada pelo cliente HTTP quando implementado. O front atual mostra apenas a identificação do projeto.
+Abra o endereço mostrado pelo Vite (normalmente http://localhost:5173). A API atende em http://localhost:3001/livros e persiste em `db.json`. Mantenha ambos os processos ativos; encerre com Ctrl+C. Para outra API, copie `.env.example` para `.env.local`, ajuste `VITE_API_URL` com a URL base sem `/livros` e reinicie o Vite.
 
-Build: `npm run build` (executado com sucesso nesta preparação). CLI local do framework: `npm run openspec -- --help`. Não é necessária instalação global: `npm ci` também instala o OpenSpec fixado pelo lockfile.
+A instalação foi executada nas etapas anteriores. A revisão de 22/11/2026 usou Node 24.14.1 e npm 11.11.0; comandos efetivamente executados e limitações estão em [docs/validacao.md](docs/validacao.md).
 
-## Onde estão os artefatos
+## Uso e limitações
 
-Insumos preliminares, ainda sem aprovação coletiva:
+A consulta ocorre ao abrir a página. Após sucesso, inclusive com acervo vazio, o cadastro é liberado. Título, autor e categoria são obrigatórios. Ano é opcional: vazio é omitido; preenchido deve ser inteiro de 1 ao ano corrente. Títulos repetidos são permitidos. Falhas preservam os dados e permitem recuperação manual.
 
-- [Requisitos e critérios de aceitação](docs/requisitos.md).
-- [Divisão de tarefas sugerida para seis integrantes](docs/divisao-preliminar.md).
-- [Registro de revisão e aprovação do grupo](docs/revisao-do-grupo.md).
+Se a resposta do cadastro se perder, confira o acervo por recarga antes de reenviar: o mock não garante idempotência. O JSON Server não impõe as regras de domínio a chamadas externas. Payloads e limitações em [docs/api.md](docs/api.md).
 
-Artefatos atuais do OpenSpec:
+## Integrantes e andamento
 
-- [Proposta](openspec/changes/catalogo-de-livros/proposal.md).
-- [Spec](openspec/changes/catalogo-de-livros/specs/catalogo-livros/spec.md).
-- [Design técnico](openspec/changes/catalogo-de-livros/design.md).
-- [Tarefas e responsáveis](openspec/changes/catalogo-de-livros/tasks.md).
+| Integrante | Atribuição registrada | Situação |
+| --- | --- | --- |
+| Jorge | 1.1–1.4 | Concluídas |
+| Davi | 2.1–2.4 | Concluídas |
+| Nicholas Paiva | 3.1–3.3 | Concluídas |
+| Vitor | A definir na tabela oficial | Formulário presente; 4.1–4.4 abertas |
+| Gustavo Alves Mota | 5.1–5.4 | Concluídas |
+| Gabriel Fontes de Sousa | 6.1–6.6 | Interface e revisão em andamento |
 
-Jorge assumiu e concluiu 1.1–1.4. Os demais integrantes devem informar seus nomes e tarefas antes de executar, registrando as escolhas no tasks.md. `npx openspec validate catalogo-de-livros --strict` passou; isso verifica os artefatos, não comprova o funcionamento da futura aplicação.
+Usuários GitHub individuais não informados. Repositório: [Jorglcs/atividade-frontend](https://github.com/Jorglcs/atividade-frontend), branch `main`. Esse endereço não identifica os usuários dos demais integrantes. O relatório do bloco 4 identifica Vitor Lima, mas a atribuição ainda precisa ser conciliada pelo responsável em `tasks.md`.
 
-## Reflexão
+O front está integrado. No bloco 6, estilos/responsividade e verificações básicas estão concluídos; foco no primeiro erro e associação do erro da categoria foram corrigidos com autorização e retestados no navegador. Ainda faltam revisão de acessibilidade com os responsáveis, registros de usuários GitHub, cenários integrados específicos e validação/reflexão coletivas. A [lista de tarefas](openspec/changes/catalogo-de-livros/tasks.md) é a fonte de verdade para atribuições e conclusão; a matriz dos 19 cenários está em `docs/validacao.md`.
 
-Responder depois do trabalho, com exemplos reais:
+## Verificações
 
-- Que decisão o agente teria tomado sozinho e a spec evitou? Pendente.
-- Que inconsistência a validação encontrou? Estava na spec ou no código? Pendente.
-- Como o framework ajudou ou atrapalhou a coordenação do grupo? Pendente.
-- O que fariam diferente com outro framework? Pendente.
+Para testar os cenários de falha do bloco 6 sem modificar o acervo, execute `npm run validar` e abra `http://localhost:5174/validacao.html`. O [roteiro de testes do bloco 6](docs/testes-bloco6.md) explica a aplicação com API real e as simulações de lentidão, resposta inválida e resposta perdida após persistência. A execução manual foi assumida pelo solicitante e continua pendente de registro; não há aprovação automática.
 
-## Próxima etapa
+```powershell
+node --test src/domain/livro.test.js src/api/livros.test.js scripts/transporte-validacao.test.js
+npm run build
+npm run validar:preparar
+npx --no-install openspec validate catalogo-de-livros --strict
+```
 
-Os demais integrantes escolhem tarefas disponíveis dos blocos 2–6 e registram seu nome e os números no tasks.md antes de implementar. Respeitar dependências e validar cada entrega. Regras de domínio de Jorge já estão disponíveis. Testes do bloco 1: `node --test src/domain/livro.test.js`.
+Em 22/11/2026: 25 testes passaram (20 de domínio/cliente e 5 dos cenários simulados), os builds da aplicação e da página de teste passaram e a mudança passou na validação estrutural. Isso não substitui seus testes manuais no navegador. Resultados, defeitos e limitações em [docs/validacao.md](docs/validacao.md).
 
-O repositório do grupo é [atividade-frontend](https://github.com/Jorglcs/atividade-frontend). Usuários GitHub e convites aos outros cinco integrantes ainda precisam ser conferidos; não foram informados nesta conversa.
+## Artefatos e coordenação
+
+- [Proposta](openspec/changes/catalogo-de-livros/proposal.md), [spec](openspec/changes/catalogo-de-livros/specs/catalogo-livros/spec.md), [design](openspec/changes/catalogo-de-livros/design.md) e [tarefas](openspec/changes/catalogo-de-livros/tasks.md).
+- [Requisitos](docs/requisitos.md), [organização](docs/divisao-preliminar.md) e [revisão coletiva](docs/revisao-do-grupo.md).
+- Código em `src/domain`, `src/api`, `src/components` e `src/pages`; estilos em `src/styles.css`.
+
+Cada integrante informa nome e tarefas antes de assumir trabalho. A aprovação coletiva da spec foi relatada por Jorge em 20/11/2026; não comprova participação coletiva na validação final. Reflexão e registros individuais dessa etapa continuam pendentes em `docs/revisao-do-grupo.md`.

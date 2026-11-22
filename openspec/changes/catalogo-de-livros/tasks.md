@@ -1,6 +1,6 @@
 # Tasks
 
-Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; bloco 2 concluído por Davi em 20/11/2026; bloco 3 concluído por Nicholas Paiva em 21/11/2026. Gustavo Alves Mota concluiu o bloco 5 em 22/11/2026. Os blocos 4 e 6 têm tarefas abertas. Marcar conclusão somente com evidência real.
+Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; bloco 2 concluído por Davi em 20/11/2026; bloco 3 concluído por Nicholas Paiva em 21/11/2026. Gustavo Alves Mota concluiu o bloco 5 em 22/11/2026. Gabriel Fontes de Sousa assumiu o bloco 6 em 22/11/2026. O bloco 4 e as tarefas ainda não verificadas do bloco 6 permanecem abertos. Marcar conclusão somente com evidência real.
 
 Integrantes: Jorge, Davi, Nicholas Paiva, Vitor, Gabriel Fontes e Gustavo Alves. A ordem dos nomes não atribui tarefas.
 
@@ -12,7 +12,7 @@ Antes de iniciar, cada pessoa informa seu nome e os números das tarefas que vai
 | Davi | 2.1, 2.2, 2.3 e 2.4 |
 | Nicholas Paiva | 3.1, 3.2 e 3.3 |
 | Vitor | A definir |
-| Gabriel Fontes | A definir |
+| Gabriel Fontes de Sousa | 6.1, 6.2, 6.3, 6.4, 6.5 e 6.6 |
 | Gustavo Alves Mota | 5.1, 5.2, 5.3 e 5.4 |
 
 Referências: [spec](specs/catalogo-livros/spec.md) e [design](design.md). Esta lista substitui a divisão preliminar para fins de execução da mudança, incluindo o ano opcional. Jorge autorizou commit e push após concluir o bloco 1 em 20/11/2026. Quando autorizados, usar a mesma branch `main`, conforme solicitado, coordenando alterações nos arquivos compartilhados.
@@ -63,13 +63,15 @@ Dependências: cliente de 2, componentes de 3 e 4. Pode preparar a composição 
 
 ## 6. Interface, documentação de uso e validação integrada
 
+Entrega de código em 22/11/2026: por instrução do solicitante, os testes manuais ficam a cargo dele. Interface, correções autorizadas de foco/ARIA e página isolada de simulação estão implementadas. Roteiro em `docs/testes-bloco6.md`. As caixas de revisão/validação coletiva permanecem abertas até existir evidência real; a entrega de código não equivale à aprovação integral do bloco.
+
 Dependências: design e acordo de classes com os responsáveis pelos blocos 3–5 para iniciar CSS; integração do bloco 5 para a validação final. Cada autor continua responsável por corrigir sua parte.
 
-- [ ] 6.1 Implementar `src/styles.css` e sua importação, coordenando mudanças de estrutura com os autores; verificar largura de 360 px e desktop sem rolagem horizontal, quebra de títulos longos, foco visível e legibilidade dos estados desabilitados e mensagens, registrando evidências em `docs/validacao.md`.
+- [x] 6.1 Implementar `src/styles.css` e sua importação, coordenando mudanças de estrutura com os autores; verificar largura de 360 px e desktop sem rolagem horizontal, quebra de títulos longos, foco visível e legibilidade dos estados desabilitados e mensagens, registrando evidências em `docs/validacao.md`.
 - [ ] 6.2 Revisar acessibilidade do fluxo integrado com os responsáveis pelos blocos 3–5; verificar ordem de teclado, labels, foco no primeiro erro e anúncio de carregamento/sucesso/falha, usando inspeção de acessibilidade e leitor de tela quando disponível; registrar limitações da verificação sem presumir aprovação.
 - [ ] 6.3 Atualizar README e reconciliar `docs/divisao-preliminar.md` com esta lista, incluindo nomes/usuários reais, comandos testados, caminhos dos artefatos e responsáveis; verificar que outra pessoa consegue iniciar API/front pelas instruções e que o README distingue trabalho concluído de pendências.
 - [ ] 6.4 Conduzir com os seis integrantes uma verificação de todos os cenários nomeados na spec, incluindo simulação de resposta fora do contrato e resposta de POST perdida após persistência; verificar cada resultado esperado em `docs/validacao.md`, com autor, data, evidência, defeito encontrado e nova execução após correção. Critérios não executados permanecem pendentes.
-- [ ] 6.5 Executar `node --test src/domain/livro.test.js src/api/livros.test.js`, `npm run build` e `npx --no-install openspec validate catalogo-de-livros --strict`; verificar sucesso e registrar saídas resumidas no relatório, distinguindo testes funcionais, build e validação estrutural.
+- [x] 6.5 Executar `node --test src/domain/livro.test.js src/api/livros.test.js`, `npm run build` e `npx --no-install openspec validate catalogo-de-livros --strict`; verificar sucesso e registrar saídas resumidas no relatório, distinguindo testes funcionais, build e validação estrutural.
 - [ ] 6.6 Consolidar com o grupo a reflexão e os registros de revisão reais de cada etapa; verificar que decisões e alterações próprias estão nos arquivos, que as aprovações dos seis estão identificadas e que nenhum resultado ou participação foi inventado.
 
 ## Workflow follow-up
