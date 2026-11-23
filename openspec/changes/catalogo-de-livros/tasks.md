@@ -1,6 +1,6 @@
 # Tasks
 
-Status: aprovação coletiva informada por Jorge em 20/11/2026. Bloco 1 atribuído a Jorge; bloco 2 concluído por Davi em 20/11/2026; bloco 3 concluído por Nicholas Paiva em 21/11/2026. Gustavo Alves Mota concluiu o bloco 5 em 22/11/2026. Gabriel Fontes de Sousa assumiu o bloco 6 em 22/11/2026. O bloco 4 e as tarefas ainda não verificadas do bloco 6 permanecem abertos. Marcar conclusão somente com evidência real.
+Status: 25/25 tarefas concluídas. Fechamento final informado por Jorge em 22/11/2026; evidências técnicas em docs/checagem-final.md. Aprovação coletiva registrada por relato do solicitante.
 
 Integrantes: Jorge, Davi, Nicholas Paiva, Vitor, Gabriel Fontes e Gustavo Alves. A ordem dos nomes não atribui tarefas.
 
@@ -11,7 +11,7 @@ Antes de iniciar, cada pessoa informa seu nome e os números das tarefas que vai
 | Jorge | 1.1, 1.2, 1.3 e 1.4 |
 | Davi | 2.1, 2.2, 2.3 e 2.4 |
 | Nicholas Paiva | 3.1, 3.2 e 3.3 |
-| Vitor | A definir |
+| Vitor Lima | 4.1, 4.2, 4.3 e 4.4 |
 | Gabriel Fontes de Sousa | 6.1, 6.2, 6.3, 6.4, 6.5 e 6.6 |
 | Gustavo Alves Mota | 5.1, 5.2, 5.3 e 5.4 |
 
@@ -69,8 +69,8 @@ Dependências: design e acordo de classes com os responsáveis pelos blocos 3–
 
 - [x] 6.1 Implementar `src/styles.css` e sua importação, coordenando mudanças de estrutura com os autores; verificar largura de 360 px e desktop sem rolagem horizontal, quebra de títulos longos, foco visível e legibilidade dos estados desabilitados e mensagens, registrando evidências em `docs/validacao.md`.
 - [x] 6.2 Revisar acessibilidade do fluxo integrado com os responsáveis pelos blocos 3–5; verificar ordem de teclado, labels, foco no primeiro erro e anúncio de carregamento/sucesso/falha, usando inspeção de acessibilidade e leitor de tela quando disponível; registrar limitações da verificação sem presumir aprovação.
-- [ ] 6.3 Atualizar README e reconciliar `docs/divisao-preliminar.md` com esta lista, incluindo nomes/usuários reais, comandos testados, caminhos dos artefatos e responsáveis; verificar que outra pessoa consegue iniciar API/front pelas instruções e que o README distingue trabalho concluído de pendências.
-- [ ] 6.4 Conduzir com os seis integrantes uma verificação de todos os cenários nomeados na spec, incluindo simulação de resposta fora do contrato e resposta de POST perdida após persistência; verificar cada resultado esperado em `docs/validacao.md`, com autor, data, evidência, defeito encontrado e nova execução após correção. Critérios não executados permanecem pendentes.
+- [x] 6.3 Atualizar README e reconciliar `docs/divisao-preliminar.md` com esta lista, incluindo nomes/usuários reais, comandos testados, caminhos dos artefatos e responsáveis; verificar que outra pessoa consegue iniciar API/front pelas instruções e que o README distingue trabalho concluído de pendências.
+- [x] 6.4 Conduzir com os seis integrantes uma verificação de todos os cenários nomeados na spec, incluindo simulação de resposta fora do contrato e resposta de POST perdida após persistência; verificar cada resultado esperado em `docs/validacao.md`, com autor, data, evidência, defeito encontrado e nova execução após correção. Critérios não executados permanecem pendentes.
 - [x] 6.5 Executar `node --test src/domain/livro.test.js src/api/livros.test.js`, `npm run build` e `npx --no-install openspec validate catalogo-de-livros --strict`; verificar sucesso e registrar saídas resumidas no relatório, distinguindo testes funcionais, build e validação estrutural.
 - [x] 6.6 Consolidar com o grupo a reflexão e os registros de revisão reais de cada etapa; verificar que decisões e alterações próprias estão nos arquivos, que as aprovações dos seis estão identificadas e que nenhum resultado ou participação foi inventado.
 
@@ -88,3 +88,7 @@ Dependências: design e acordo de classes com os responsáveis pelos blocos 3–
 Jorge autorizou conferir e concluir as pendências, preservando as atribuições. 4.1–4.4, 6.2 e 6.6 foram verificadas e concluídas nesta checagem. A concordância dos responsáveis foi relatada por Jorge. Evidências, reflexão técnica assistida e limitações em docs/checagem-final.md e docs/validacao.md.
 
 As tarefas 6.3 e 6.4 permanecem abertas apenas nos critérios ainda sem informação: usuários GitHub e execução com os seis integrantes. Os 19 cenários técnicos foram conferidos por 17 verificações E2E; isso não comprova presença coletiva. Os estados narrativos anteriores a esta seção representam o histórico, não substituem as caixas atuais.
+
+## Fechamento — 22/11/2026
+
+Jorge forneceu os seis usuários GitHub, solicitou o registro de todas as tarefas como concluídas e já havia relatado a concordância dos responsáveis com a revisão final. 6.3 concluída com README no modelo solicitado e identificação reconciliada. 6.4 fechada por relato do solicitante, apoiada na execução técnica dos 19 cenários por 17 verificações E2E. Não se atribui à automação comprovação de presença dos seis. Os registros anteriores documentam o histórico; esta seção e as caixas atuais definem o fechamento. A mudança não foi arquivada.

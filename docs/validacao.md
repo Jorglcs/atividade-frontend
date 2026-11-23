@@ -231,3 +231,7 @@ Esta seção atualiza o andamento; os registros anteriores descrevem suas respec
 | 6.6 | Reflexão técnica redigida a pedido de Jorge, identificada como síntese assistida, sem falas fictícias. Concordância final dos seis registrada por relato de Jorge em revisao-do-grupo.md |
 
 Detalhes, matriz dos 19 cenários, limites e reprodução: [checagem-final.md](checagem-final.md). Saída final de node scripts/e2e.mjs: 17 verificações E2E, Chrome 157.0.8103.79, exit 0. O banco original não foi alterado. Build não foi usado como substituto de validação funcional.
+
+## Fechamento informado por Jorge — 22/11/2026
+
+Jorge forneceu os usuários Jorglcs, DaviSPTECH, Npaivas, Vitorlbs-dev, gustavomot4 e gabrielfontesdesousa, solicitou o README no modelo da atividade e determinou o registro das tarefas como concluídas. As contas e atribuições estão no README e em divisao-preliminar.md. O fechamento de 6.4 é por relato do solicitante, com concordância dos responsáveis já informada por ele, apoiado nos resultados E2E registrados; não foi criada evidência de presença coletiva observada pela automação. Total final: 25/25 tarefas concluídas. Os limites técnicos da checagem permanecem válidos.

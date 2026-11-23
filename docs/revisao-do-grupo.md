@@ -80,3 +80,7 @@ A reflexão técnica foi elaborada com assistência do Codex a pedido de Jorge e
 Alteração da validação final: ano como input textual com teclado numérico e noValidate, permitindo que o domínio trate entrada não numérica/fracionária e preserve seu valor. Implementação e reteste pelo Codex a pedido de Jorge em 22/11/2026. Evidências em validacao.md e scripts/e2e.mjs.
 
 Continuam sem informação os usuários GitHub e a presença dos seis na execução final. Aprovação por relato não foi convertida em participação fictícia.
+
+## Fechamento — 22/11/2026
+
+Jorge forneceu as contas GitHub dos seis integrantes e solicitou registrar todas as tarefas como concluídas. O fechamento coletivo é por relato dele, conforme a concordância final já registrada. O README apresenta a reflexão técnica consolidada com assistência do Codex e os responsáveis pelas entregas. Nenhuma nova sessão presencial ou fala individual é atribuída aos integrantes.

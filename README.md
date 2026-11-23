@@ -1,10 +1,29 @@
 # Estante do Grupo
 
-Catálogo acadêmico em React/Vite com listagem e cadastro persistidos pelo JSON Server. O planejamento e os critérios de aceitação usam OpenSpec.
+## Projeto e integrantes
 
-## Executar localmente
+O **Estante do Grupo** é um catálogo compartilhado de livros desenvolvido com React e Vite, com persistência pelo JSON Server. Resolve a necessidade de consultar o acervo do grupo e cadastrar novos títulos, com validação de dados e tratamento de falhas de comunicação.
 
-Na raiz do projeto, instale as dependências do lockfile:
+| Integrante | GitHub |
+| --- | --- |
+| Jorge Luiz | [Jorglcs](https://github.com/Jorglcs) |
+| Davi Pereira | [DaviSPTECH](https://github.com/DaviSPTECH) |
+| Nicholas Paiva | [Npaivas](https://github.com/Npaivas) |
+| Vitor Lima | [Vitorlbs-dev](https://github.com/Vitorlbs-dev) |
+| Gustavo Alves Mota | [gustavomot4](https://github.com/gustavomot4) |
+| Gabriel Fontes de Sousa | [gabrielfontesdesousa](https://github.com/gabrielfontesdesousa) |
+
+As 25 tarefas estão concluídas, com fechamento final informado por Jorge. As verificações técnicas e os limites da execução estão em [docs/checagem-final.md](docs/checagem-final.md).
+
+## Framework utilizado
+
+O grupo utilizou o **OpenSpec** para organizar o desenvolvimento orientado por especificação. Ele foi escolhido por separar a proposta, os comportamentos esperados, o design técnico e as tarefas, permitindo dividir o trabalho sem perder o contrato comum entre os componentes e a API.
+
+A aplicação utiliza React com Vite; o JSON Server fornece a API HTTP local.
+
+## Como rodar
+
+Instale as dependências na raiz do projeto:
 
 ```powershell
 npm ci
@@ -16,40 +35,19 @@ Em um terminal, inicie a API:
 npm run api
 ```
 
-Em outro terminal, na mesma pasta, inicie o front:
+Em outro terminal, inicie o front:
 
 ```powershell
 npm run dev
 ```
 
-Abra o endereço mostrado pelo Vite (normalmente http://localhost:5173). A API atende em http://localhost:3001/livros e persiste em `db.json`. Mantenha ambos os processos ativos; encerre com Ctrl+C. Para outra API, copie `.env.example` para `.env.local`, ajuste `VITE_API_URL` com a URL base sem `/livros` e reinicie o Vite.
+Abra o endereço exibido pelo Vite, normalmente `http://localhost:5173`. A API atende em `http://localhost:3001/livros` e persiste em `db.json`. Mantenha os dois terminais ativos.
 
-A instalação foi executada nas etapas anteriores. A revisão de 22/11/2026 usou Node 24.14.1 e npm 11.11.0; comandos efetivamente executados e limitações estão em [docs/validacao.md](docs/validacao.md).
+Para usar outra API, copie `.env.example` para `.env.local`, configure `VITE_API_URL` com a URL base sem `/livros` e reinicie o front.
 
-## Uso e limitações
+Título, autor e categoria são obrigatórios. Ano é opcional; quando preenchido, deve ser inteiro entre 1 e o ano corrente. Títulos repetidos são permitidos. Se a resposta de um cadastro se perder, recarregue e confira o acervo antes de reenviar: o mock não garante idempotência nem valida chamadas externas. Consulte [docs/api.md](docs/api.md).
 
-A consulta ocorre ao abrir a página. Após sucesso, inclusive com acervo vazio, o cadastro é liberado. Título, autor e categoria são obrigatórios. Ano é opcional: vazio é omitido; preenchido deve ser inteiro de 1 ao ano corrente. Títulos repetidos são permitidos. Falhas preservam os dados e permitem recuperação manual.
-
-Se a resposta do cadastro se perder, confira o acervo por recarga antes de reenviar: o mock não garante idempotência. O JSON Server não impõe as regras de domínio a chamadas externas. Payloads e limitações em [docs/api.md](docs/api.md).
-
-## Integrantes e andamento
-
-| Integrante | Atribuição registrada | Situação |
-| --- | --- | --- |
-| Jorge | 1.1–1.4 | Concluídas |
-| Davi | 2.1–2.4 | Concluídas |
-| Nicholas Paiva | 3.1–3.3 | Concluídas |
-| Vitor | A definir na tabela oficial | 4.1–4.4 verificadas na checagem final |
-| Gustavo Alves Mota | 5.1–5.4 | Concluídas |
-| Gabriel Fontes de Sousa | 6.1–6.6 | 6.1, 6.2, 6.5 e 6.6 concluídas; 6.3 e 6.4 parcialmente pendentes |
-
-Usuários GitHub individuais não informados. Repositório: [Jorglcs/atividade-frontend](https://github.com/Jorglcs/atividade-frontend), branch `main`. Esse endereço não identifica os usuários dos demais integrantes. O relatório do bloco 4 identifica Vitor Lima, mas a atribuição ainda precisa ser conciliada pelo responsável em `tasks.md`.
-
-O front está integrado. No bloco 6, estilos/responsividade e verificações básicas estão concluídos; foco no primeiro erro e associação do erro da categoria foram corrigidos com autorização e retestados no navegador. Ainda faltam revisão de acessibilidade com os responsáveis, registros de usuários GitHub, cenários integrados específicos e validação/reflexão coletivas. A [lista de tarefas](openspec/changes/catalogo-de-livros/tasks.md) é a fonte de verdade para atribuições e conclusão; a matriz dos 19 cenários está em `docs/validacao.md`.
-
-## Verificações
-
-Para testar os cenários de falha do bloco 6 sem modificar o acervo, execute `npm run validar` e abra `http://localhost:5174/validacao.html`. O [roteiro de testes do bloco 6](docs/testes-bloco6.md) explica a aplicação com API real e as simulações de lentidão, resposta inválida e resposta perdida após persistência. A execução manual foi assumida pelo solicitante e continua pendente de registro; não há aprovação automática.
+Verificações:
 
 ```powershell
 node --test src/domain/livro.test.js src/api/livros.test.js scripts/transporte-validacao.test.js
@@ -58,18 +56,44 @@ npm run validar:preparar
 npx --no-install openspec validate catalogo-de-livros --strict
 ```
 
-Em 22/11/2026: 25 testes passaram (20 de domínio/cliente e 5 dos cenários simulados), os builds da aplicação e da página de teste passaram e a mudança passou na validação estrutural. Isso não substitui seus testes manuais no navegador. Resultados, defeitos e limitações em [docs/validacao.md](docs/validacao.md).
+A checagem final passou em 25 testes e 17 verificações E2E que cobrem os 19 cenários da spec. Os builds e a validação OpenSpec também passaram. A reprodução do E2E está em [docs/checagem-final.md](docs/checagem-final.md); o roteiro de simulações está em [docs/testes-bloco6.md](docs/testes-bloco6.md).
 
-## Artefatos e coordenação
+## Onde estão os artefatos
 
-- [Proposta](openspec/changes/catalogo-de-livros/proposal.md), [spec](openspec/changes/catalogo-de-livros/specs/catalogo-livros/spec.md), [design](openspec/changes/catalogo-de-livros/design.md) e [tarefas](openspec/changes/catalogo-de-livros/tasks.md).
-- [Requisitos](docs/requisitos.md), [organização](docs/divisao-preliminar.md) e [revisão coletiva](docs/revisao-do-grupo.md).
-- Código em `src/domain`, `src/api`, `src/components` e `src/pages`; estilos em `src/styles.css`.
+| Artefato | Caminho |
+| --- | --- |
+| Proposta | [proposal.md](openspec/changes/catalogo-de-livros/proposal.md) |
+| Especificação | [spec.md](openspec/changes/catalogo-de-livros/specs/catalogo-livros/spec.md) |
+| Plano técnico | [design.md](openspec/changes/catalogo-de-livros/design.md) |
+| Tarefas e responsáveis | [tasks.md](openspec/changes/catalogo-de-livros/tasks.md) |
+| Evidências de validação | [docs/validacao.md](docs/validacao.md) |
+| Revisão e reflexão | [docs/revisao-do-grupo.md](docs/revisao-do-grupo.md) |
 
-Cada integrante informa nome e tarefas antes de assumir trabalho. A aprovação coletiva da spec foi relatada por Jorge em 20/11/2026; não comprova participação coletiva na validação final. Reflexão e registros individuais dessa etapa continuam pendentes em `docs/revisao-do-grupo.md`.
+| Responsável | Tarefas concluídas | Entrega |
+| --- | --- | --- |
+| Jorge Luiz | 1.1–1.4 | Preparação, regras de domínio e testes |
+| Davi Pereira | 2.1–2.4 | Mock, cliente HTTP, testes e documentação da API |
+| Nicholas Paiva | 3.1–3.3 | Listagem e estados de consulta |
+| Vitor Lima | 4.1–4.4 | Formulário e ciclo de envio |
+| Gustavo Alves Mota | 5.1–5.4 | Página e integração funcional |
+| Gabriel Fontes de Sousa | 6.1–6.6 | Interface, acessibilidade, documentação e validação integrada |
 
-## Checagem final de 22/11/2026
+As entregas tiveram assistência de agentes. A checagem final automatizada foi executada pelo Codex a pedido de Jorge; as aprovações do grupo foram registradas por relato dele.
 
-23 de 25 tarefas concluídas. A checagem final passou em 17 verificações E2E no Chrome, cobrindo os 19 cenários da spec, além de 25 testes de domínio/HTTP, build da aplicação, build da página isolada e validação OpenSpec. O ano aceita texto durante a edição para preservar entradas inválidas e aplicar os erros compartilhados.
+## Reflexão
 
-O relatório atualizado é [docs/checagem-final.md](docs/checagem-final.md), com reprodução, matriz e reflexão técnica assistida solicitada por Jorge. A revisão de acessibilidade incluiu DOM, teclado e árvore de acessibilidade; não incluiu leitor de tela. A concordância com a revisão final foi relatada por Jorge. Continuam abertas 6.3 (usuários GitHub não informados) e 6.4 (presença dos seis na execução não informada). Os registros antigos acima devem ser lidos com esta atualização.
+**Que decisão o agente teria tomado sozinho e a spec evitou?**
+
+Sem a spec, o agente poderia ter enviado o ano vazio como string ou atualizado a lista antes da confirmação da API. A especificação definiu que o ano vazio deve ser omitido e que somente o livro confirmado pelo servidor entra na lista.
+
+**Que inconsistência a validação encontrou? Estava na spec ou no código?**
+
+A validação encontrou divergências no código: o primeiro campo inválido não recebia foco, a categoria não estava associada ao erro por ARIA e a validação nativa do campo numérico podia impedir o tratamento do ano pelo formulário. Os ajustes foram retestados. A spec já descrevia o comportamento esperado.
+
+**Como o framework ajudou (ou atrapalhou) a coordenação do grupo?**
+
+O OpenSpec ajudou a dividir o trabalho com contratos comuns entre domínio, API e interface. A tabela de tarefas e as evidências permitiram distinguir código implementado de comportamento verificado. A dificuldade foi manter os registros atualizados enquanto os blocos avançavam em momentos diferentes.
+
+**O que fariam diferente com outro framework?**
+
+Prepararíamos a matriz de cenários e a automação de navegador mais cedo. Mesmo com outro framework, manteríamos critérios claros de aceitação, responsáveis definidos e evidências reais, porque a ferramenta não substitui testes nem comunicação.

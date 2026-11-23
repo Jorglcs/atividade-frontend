@@ -69,3 +69,7 @@ Em outro trabalho, seria útil preparar a automação de navegador e a matriz de
 ## Limitações administrativas
 
 Usuários GitHub individuais ainda não informados. A presença dos seis na execução final não foi informada. A concordância com a revisão foi relatada por Jorge; não foram inventadas assinaturas, contas ou execução coletiva. Por isso 6.3 e 6.4 continuam abertas nos respectivos critérios administrativos, embora a documentação e os 19 cenários técnicos tenham sido conferidos.
+
+## Atualização de fechamento — 22/11/2026
+
+As limitações administrativas acima descrevem o estado anterior. Jorge forneceu as seis contas GitHub e solicitou o fechamento de todas as tarefas. 6.3 foi concluída com a documentação atualizada; 6.4 foi fechada por relato do solicitante, apoiada nos resultados técnicos desta checagem e na concordância dos responsáveis relatada por ele. Total: 25/25. Não houve nova execução E2E nesta atualização documental, nem observação de presença coletiva pela automação.
