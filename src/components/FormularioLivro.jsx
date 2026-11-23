@@ -63,6 +63,7 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
 
   return (
     <form
+      noValidate
       ref={formulario}
       onSubmit={handleSubmit}
       className="formulario-livro"
@@ -147,7 +148,8 @@ export function FormularioLivro({ onCadastrar, indisponivel }) {
           Ano
         </label>
         <input
-          type="number"
+          type="text"
+          inputMode="numeric"
           name="ano"
           id="ano"
           value={campos.ano}

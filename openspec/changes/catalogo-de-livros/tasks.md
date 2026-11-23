@@ -47,10 +47,10 @@ Dependências: interfaces do design; pode começar em paralelo com 1 e 2 usando 
 
 Dependências: regras de 1.2; o componente pode usar `onCadastrar` simulado antes da integração. Arquivo principal: `src/components/FormularioLivro.jsx`.
 
-- [ ] 4.1 Implementar campos controlados de título, autor, categoria e ano opcional, labels e erros associados, usando as regras compartilhadas; verificar que valores inválidos impedem o callback e direcionam foco ao primeiro campo inválido, e que dados válidos enviam o payload normalizado.
-- [ ] 4.2 Implementar bloqueio por `indisponivel`, estado pendente e guarda síncrona contra envio duplo; verificar com Promise controlada que campos/botão ficam desabilitados, “Cadastrando...” aparece e tentativas consecutivas acionam o callback apenas uma vez.
-- [ ] 4.3 Implementar sucesso e falha com mensagens da spec; verificar com callbacks que resolvem/rejeitam que sucesso limpa os campos, falha preserva todos os valores, ambos liberam o envio e nenhuma repetição automática ocorre.
-- [ ] 4.4 Registrar em `docs/validacao.md` resultados isolados do formulário e seu contrato de props; verificar cobertura de campos obrigatórios, ano vazio/válido/inválido, envio pendente, sucesso e falha, incluindo as mensagens anunciáveis.
+- [x] 4.1 Implementar campos controlados de título, autor, categoria e ano opcional, labels e erros associados, usando as regras compartilhadas; verificar que valores inválidos impedem o callback e direcionam foco ao primeiro campo inválido, e que dados válidos enviam o payload normalizado.
+- [x] 4.2 Implementar bloqueio por `indisponivel`, estado pendente e guarda síncrona contra envio duplo; verificar com Promise controlada que campos/botão ficam desabilitados, “Cadastrando...” aparece e tentativas consecutivas acionam o callback apenas uma vez.
+- [x] 4.3 Implementar sucesso e falha com mensagens da spec; verificar com callbacks que resolvem/rejeitam que sucesso limpa os campos, falha preserva todos os valores, ambos liberam o envio e nenhuma repetição automática ocorre.
+- [x] 4.4 Registrar em `docs/validacao.md` resultados isolados do formulário e seu contrato de props; verificar cobertura de campos obrigatórios, ano vazio/válido/inválido, envio pendente, sucesso e falha, incluindo as mensagens anunciáveis.
 
 ## 5. Página e integração funcional
 
@@ -68,11 +68,11 @@ Entrega de código em 22/11/2026: por instrução do solicitante, os testes manu
 Dependências: design e acordo de classes com os responsáveis pelos blocos 3–5 para iniciar CSS; integração do bloco 5 para a validação final. Cada autor continua responsável por corrigir sua parte.
 
 - [x] 6.1 Implementar `src/styles.css` e sua importação, coordenando mudanças de estrutura com os autores; verificar largura de 360 px e desktop sem rolagem horizontal, quebra de títulos longos, foco visível e legibilidade dos estados desabilitados e mensagens, registrando evidências em `docs/validacao.md`.
-- [ ] 6.2 Revisar acessibilidade do fluxo integrado com os responsáveis pelos blocos 3–5; verificar ordem de teclado, labels, foco no primeiro erro e anúncio de carregamento/sucesso/falha, usando inspeção de acessibilidade e leitor de tela quando disponível; registrar limitações da verificação sem presumir aprovação.
+- [x] 6.2 Revisar acessibilidade do fluxo integrado com os responsáveis pelos blocos 3–5; verificar ordem de teclado, labels, foco no primeiro erro e anúncio de carregamento/sucesso/falha, usando inspeção de acessibilidade e leitor de tela quando disponível; registrar limitações da verificação sem presumir aprovação.
 - [ ] 6.3 Atualizar README e reconciliar `docs/divisao-preliminar.md` com esta lista, incluindo nomes/usuários reais, comandos testados, caminhos dos artefatos e responsáveis; verificar que outra pessoa consegue iniciar API/front pelas instruções e que o README distingue trabalho concluído de pendências.
 - [ ] 6.4 Conduzir com os seis integrantes uma verificação de todos os cenários nomeados na spec, incluindo simulação de resposta fora do contrato e resposta de POST perdida após persistência; verificar cada resultado esperado em `docs/validacao.md`, com autor, data, evidência, defeito encontrado e nova execução após correção. Critérios não executados permanecem pendentes.
 - [x] 6.5 Executar `node --test src/domain/livro.test.js src/api/livros.test.js`, `npm run build` e `npx --no-install openspec validate catalogo-de-livros --strict`; verificar sucesso e registrar saídas resumidas no relatório, distinguindo testes funcionais, build e validação estrutural.
-- [ ] 6.6 Consolidar com o grupo a reflexão e os registros de revisão reais de cada etapa; verificar que decisões e alterações próprias estão nos arquivos, que as aprovações dos seis estão identificadas e que nenhum resultado ou participação foi inventado.
+- [x] 6.6 Consolidar com o grupo a reflexão e os registros de revisão reais de cada etapa; verificar que decisões e alterações próprias estão nos arquivos, que as aprovações dos seis estão identificadas e que nenhum resultado ou participação foi inventado.
 
 ## Workflow follow-up
 
@@ -82,3 +82,9 @@ Dependências: design e acordo de classes com os responsáveis pelos blocos 3–
 - Quando o usuário autorizar, publicar no repositório informado, na main, e convidar os outros cinco integrantes. Commit e push do bloco 1 foram autorizados por Jorge; convites dependem dos usuários GitHub ainda não informados.
 - Após implementação, revisão e validação aprovadas, verificar a disponibilidade do workflow de verificação OpenSpec na instalação e utilizá-lo conforme o capítulo do book; ele complementa a execução dos cenários.
 - Sincronizar/arquivar a mudança apenas depois de concluída e sob solicitação posterior; não considerar o planejamento completo como aplicação concluída.
+
+## Atualização da checagem final — 22/11/2026
+
+Jorge autorizou conferir e concluir as pendências, preservando as atribuições. 4.1–4.4, 6.2 e 6.6 foram verificadas e concluídas nesta checagem. A concordância dos responsáveis foi relatada por Jorge. Evidências, reflexão técnica assistida e limitações em docs/checagem-final.md e docs/validacao.md.
+
+As tarefas 6.3 e 6.4 permanecem abertas apenas nos critérios ainda sem informação: usuários GitHub e execução com os seis integrantes. Os 19 cenários técnicos foram conferidos por 17 verificações E2E; isso não comprova presença coletiva. Os estados narrativos anteriores a esta seção representam o histórico, não substituem as caixas atuais.

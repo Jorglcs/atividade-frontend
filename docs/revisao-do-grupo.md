@@ -61,3 +61,22 @@ O roteiro de conferência dos 19 cenários, evidências existentes e lacunas est
 Preencher com evidências reais depois da implementação: critério executado, resultado esperado, resultado observado, inconsistência encontrada, correção e nova execução. Registrar também o resultado do comando de verificação do framework disponível na instalação.
 
 Não afirmar que a atividade está concluída antes de ter repositório GitHub, colaboradores, artefatos do framework, código e validação.
+
+## Consolidação da revisão final — 22/11/2026
+
+Jorge solicitou a checagem final e informou nesta conversa que os responsáveis concordam com a revisão final. Registro por relato, sem assinaturas individuais ou alegação de presença durante a execução automatizada.
+
+| Integrante | Concordância com a revisão final |
+| --- | --- |
+| Jorge | Informada por Jorge em 22/11/2026 |
+| Davi | Relatada por Jorge em 22/11/2026 |
+| Nicholas Paiva | Relatada por Jorge em 22/11/2026 |
+| Vitor | Relatada por Jorge em 22/11/2026 |
+| Gabriel Fontes de Sousa | Relatada por Jorge em 22/11/2026 |
+| Gustavo Alves Mota | Relatada por Jorge em 22/11/2026 |
+
+A reflexão técnica foi elaborada com assistência do Codex a pedido de Jorge e está em [checagem-final.md](checagem-final.md). O texto sintetiza fatos registrados; não atribui comentários inventados aos integrantes. Atualiza as pendências técnicas mencionadas acima: resposta fora do contrato e resposta perdida foram verificadas no E2E; a revisão de acessibilidade foi executada por inspeção automatizada, com suas limitações registradas.
+
+Alteração da validação final: ano como input textual com teclado numérico e noValidate, permitindo que o domínio trate entrada não numérica/fracionária e preserve seu valor. Implementação e reteste pelo Codex a pedido de Jorge em 22/11/2026. Evidências em validacao.md e scripts/e2e.mjs.
+
+Continuam sem informação os usuários GitHub e a presença dos seis na execução final. Aprovação por relato não foi convertida em participação fictícia.

@@ -213,3 +213,21 @@ Verificação automatizada no Chrome 157.0.8103.79 em modo headless, com Vite em
 | 5.1–5.4 | `node --test src/domain/livro.test.js src/api/livros.test.js`, `npm run build` e `npx --no-install openspec validate catalogo-de-livros --strict` | 20 testes passaram. O Vite 8.3.8 gerou o build com 21 módulos transformados. A mudança passou na validação estrutural do OpenSpec |
 
 Com autorização de Gustavo, o formulário recebeu a importação de `useRef`, o bloqueio efetivo dos controles e as mensagens de sucesso e falha necessárias à integração. O contêiner `.livros-page` reúne as duas seções para o CSS do bloco 6. A validação conferiu as regiões de status e alerta no DOM. A revisão de responsividade, foco e anúncios em leitor de tela segue nas tarefas do bloco 6.
+
+## Checagem final — Jorge, com assistência do Codex — 22/11/2026
+
+Esta seção atualiza o andamento; os registros anteriores descrevem suas respectivas datas. Revisão final autorizada por Jorge, que relatou concordância dos responsáveis. Atribuições preservadas conforme solicitado.
+
+| Tarefa | Execução e resultado real |
+| --- | --- |
+| 4.1 | E2E integrado: vazio, espaços, limites, categoria e anos inválidos bloqueados, foco no primeiro erro e ARIA associados. Payload válido normalizado. Ajustado ano para texto com inputMode numeric e formulário noValidate, preservando texto e aplicando a regra compartilhada. Reteste passou |
+| 4.2 | Componente isolado com indisponivel e Promise controlada; dois requestSubmit síncronos geraram uma chamada. No fluxo HTTP, cinco controles bloqueados e um POST durante atraso. Passou |
+| 4.3 | Callback isolado rejeitado preservou valores e liberou envio; resolução posterior limpou campos e anunciou sucesso. Falhas reais/interceptadas de HTTP preservaram os quatro campos e lista, sem repetição. Passou |
+| 4.4 | Contrato permanece FormularioLivro({ onCadastrar, indisponivel }); callback recebe payload normalizado e retorna Promise. Cobertura de obrigatórios, ano vazio/válido/inválido, envio pendente, sucesso e falha em scripts/e2e.mjs; 17 verificações passaram |
+| 6.2 | Teclado, outline, labels, foco, status/alert e árvore de acessibilidade Chrome conferidos. Concordância dos responsáveis relatada por Jorge. Sem leitor de tela nesta execução; não se afirma anúncio audível |
+| 6.3 | README e organização reconciliados com a checagem final. Usuários GitHub ainda não fornecidos; tarefa aberta |
+| 6.4 | Os 19 cenários da spec estão mapeados em checagem-final.md, cobertos pelas 17 verificações E2E. JSON Server real em banco temporário, reinício e perda de resposta após persistência conferidos. Presença dos seis na execução não informada; tarefa aberta nesse critério |
+| 6.5 | 25 testes passaram; build da aplicação e da página isolada passaram; OpenSpec strict passou |
+| 6.6 | Reflexão técnica redigida a pedido de Jorge, identificada como síntese assistida, sem falas fictícias. Concordância final dos seis registrada por relato de Jorge em revisao-do-grupo.md |
+
+Detalhes, matriz dos 19 cenários, limites e reprodução: [checagem-final.md](checagem-final.md). Saída final de node scripts/e2e.mjs: 17 verificações E2E, Chrome 157.0.8103.79, exit 0. O banco original não foi alterado. Build não foi usado como substituto de validação funcional.

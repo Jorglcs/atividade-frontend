@@ -22,3 +22,7 @@ Antes de iniciar, cada integrante informa ao agente seu nome e os números das t
 Exemplo: “Sou Davi e vou assumir as tarefas 3.1, 3.2 e 3.3. Registre minha responsabilidade antes de começar.”
 
 Registrar mudanças de responsabilidade no mesmo arquivo. Cada autor verifica sua entrega e só marca conclusão com evidência real. A sessão coletiva e revisão dos artefatos continuam conforme o enunciado.
+
+## Atualização da checagem final — 22/11/2026
+
+As atribuições permanecem as mesmas, conforme solicitação de Jorge. 4.1–4.4 verificadas e concluídas; 6.2 e 6.6 concluídas com limites e concordância por relato registrados. Total: 23/25. Somente 6.3 e 6.4 permanecem abertas, pelos usuários GitHub e execução com os seis não informados. Evidências e reflexão em checagem-final.md; os parágrafos anteriores descrevem o estado anterior à checagem.
